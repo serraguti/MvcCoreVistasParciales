@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcCoreVistasParciales.Models;
 using System;
@@ -21,6 +22,24 @@ namespace MvcCoreVistasParciales.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult LogIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult LogIn(string usuario)
+        {
+            HttpContext.Session.SetString("USUARIO", usuario);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult CloseSession()
+        {
+            HttpContext.Session.Remove("USUARIO");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

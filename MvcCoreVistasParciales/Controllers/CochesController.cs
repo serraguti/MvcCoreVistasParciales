@@ -50,5 +50,14 @@ namespace MvcCoreVistasParciales.Controllers
         {
             return PartialView("_CochesPartial", this.Cars);
         }
+
+        //PODEMOS TENER METODOS QUE RECIBAN PARAMETROS
+        //DEBEMOS ENVIAR SIEMPRE PRIMITIVOS
+        public IActionResult _CochesDetailsPartial(int idcoche)
+        {
+            Coche car =
+                this.Cars.SingleOrDefault(z => z.IdCoche == idcoche);
+            return PartialView("_CochesDetailsPartial", car);
+        }
     }
 }
